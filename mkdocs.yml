@@ -34,6 +34,7 @@ nav:
   - Cookbook:
       - Deployment with HTTPS: "cookbook/deployment_with_https.md"
       - Optimize relationship loading: "cookbook/optimize_relationship_loading.md"
+      - Profiling and debugging: "cookbook/profiling.md"
       - Display custom attributes: "cookbook/display_custom_attributes.md"
       - Using a request object: "cookbook/using_request_object.md"
       - Multiple databases: "cookbook/multiple_databases.md"
@@ -41,7 +42,6 @@ nav:
       - Audit logging: "cookbook/audit_logging.md"
       - Working with Passwords: "cookbook/working_with_passwords.md"
       - Displaying one-time secrets: "cookbook/displaying_one_time_secrets.md"
-      - Debug toolbar: "cookbook/debug_toolbar.md"
   - API Reference:
       - Application: "api_reference/application.md"
       - ModelView: "api_reference/model_view.md"

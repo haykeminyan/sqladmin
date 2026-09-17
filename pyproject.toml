@@ -44,16 +44,7 @@ dependencies = [
 [project.optional-dependencies]
 auth = ["itsdangerous"]
 i18n = ["babel"]
-debug = [
-  "litestar-debug-toolbar>=0.4.2",
-  "litestar>=2.24.0",
-]
-full = [
-  "itsdangerous",
-  "babel",
-  "litestar-debug-toolbar>=0.4.2",
-  "litestar>=2.24.0",
-]
+full = ["itsdangerous", "babel"]
 
 [project.urls]
 Documentation = "https://smithyhq.github.io/sqladmin/"
@@ -75,8 +66,6 @@ dev = [
   "greenlet",
   "httpx",
   "itsdangerous",
-  "litestar-debug-toolbar>=0.4.2",
-  "litestar>=2.24.0",
   "phonenumbers",
   "pillow",
   "psycopg2-binary",

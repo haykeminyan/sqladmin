@@ -93,7 +93,6 @@ class BaseAdmin:
         authentication_backend: AuthenticationBackend | None = None,
         i18n_config: I18nConfig | None = None,
         audit_backend: AuditBackend | None = None,
-        debug_toolbar: bool | Any = False,
     ) -> None:
         self.app = app
         self.audit_backend = audit_backend or NullAuditBackend()
@@ -106,7 +105,6 @@ class BaseAdmin:
         self.logo_height = logo_height
         self.favicon_url = favicon_url
         self.i18n_config = i18n_config
-        self.debug_toolbar = debug_toolbar
         if i18n_config is not None and not BABEL_INSTALLED:
             warnings.warn(
                 "i18n_config was provided but the 'babel' package is not "
@@ -147,27 +145,6 @@ class BaseAdmin:
         self.templates = self.init_templating_engine()
         self._views: list[BaseView | ModelView] = []
         self._menu = Menu()
-        self.init_debug_toolbar()
-
-    def init_debug_toolbar(self) -> None:
-        if self.debug_toolbar:
-            try:
-                from debug_toolbar.fastapi import (
-                    FastAPIDebugToolbarConfig,
-                    setup_debug_toolbar,
-                )
-            except ImportError as e:
-                raise ImportError(
-                    "debug-toolbar is not installed. "
-                    "Install it with: pip install 'debug-toolbar[fastapi]'"
-                ) from e
-
-            if self.debug_toolbar is True:
-                config = FastAPIDebugToolbarConfig(enabled=True)
-            else:
-                config = self.debug_toolbar
-
-            setup_debug_toolbar(self.app, config)
 
     def init_templating_engine(self) -> Jinja2Templates:
         templates = Jinja2Templates("templates")
@@ -538,7 +515,6 @@ class Admin(BaseAdminView):
         static_files_kwargs: dict[str, Any] | None = None,
         i18n_config: I18nConfig | None = None,
         audit_backend: AuditBackend | None = None,
-        debug_toolbar: bool | Any = False,
     ) -> None:
         """
         Args:
@@ -572,7 +548,6 @@ class Admin(BaseAdminView):
             authentication_backend=authentication_backend,
             i18n_config=i18n_config,
             audit_backend=audit_backend,
-            debug_toolbar=debug_toolbar,
         )
 
         static_files_kwargs = {**(static_files_kwargs or {}), "packages": ["sqladmin"]}
